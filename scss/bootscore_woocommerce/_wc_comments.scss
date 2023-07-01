@@ -13,7 +13,6 @@ WooCommerce Comments
   padding-left: 65px;
 }
 
-// Last child bottom margin
-#woo-comments p:last-child {
-  margin-bottom: 0;
+.woocommerce #reviews h3 {
+  margin-bottom: $spacer * .5,;
 }

@@ -4,6 +4,7 @@ WooCommerce Checkout
 
 // Reset coupon collapse
 .woocommerce form {
+
   &.checkout_coupon,
   &.login,
   &.register {
@@ -13,22 +14,85 @@ WooCommerce Checkout
   }
 }
 
-// Hide Paypal img and link
-#payment .payment_method_paypal img,
-.woocommerce-checkout #payment .payment_method_paypal .about_paypal {
-  display: none;
+
+// Create account password icon
+#account_password {
+  background-position: right $spacer * 2.25 center;
 }
 
-// Override WC border-radius: 5px; in #payment card
-#add_payment_method #payment, .woocommerce-cart #payment,
-.woocommerce-checkout #payment {
-  border-radius: $border-radius;
-}
 
+// #order_review
 // Set shipping table to top
 .woocommerce-shipping-totals th {
   vertical-align: top;
 }
+
+
+// #payment
+.woocommerce-checkout #payment {
+
+  // Create card
+  background: $card-bg;
+  border: $card-border-width solid $card-border-color;
+  border-radius: $card-border-radius;
+  padding: $card-spacer-y $card-spacer-x;
+
+  ul.payment_methods {
+    border-bottom: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color);
+    padding: 0;
+    margin-bottom: $spacer;
+
+    li {
+      line-height: inherit;
+
+      // Adjust payment method checkboxes
+      input {
+        margin-top: ($line-height-base - $form-check-input-width) * .5;
+        margin-right: $form-check-input-width * .5;
+        margin-bottom: 0;
+        margin-left: -$spacer * 1.5;
+      }
+    }
+
+    // Payment information
+    div.payment_box {
+      border-radius: $border-radius;
+      font-size: $font-size-base;
+    }
+
+    // Hide Paypal img and link
+    .payment_method_paypal {
+
+      img,
+      .about_paypal {
+        display: none;
+      }
+    }
+  }
+
+  // Policy & place-order wrapper
+  div.form-row {
+    padding: 0;
+    margin: 0;
+  }
+
+  // Place ordere button
+  #place_order {
+    @extend .btn-lg;
+    width: 100%;
+    margin-bottom: 0 !important; // In case aggregated CSS (Autoptimize)
+  }
+}
+
+
+// Adjust terms checkboxes
+.woocommerce form .form-row .input-checkbox {
+  margin-top: ($line-height-base - $form-check-input-width) * .5 !important;
+  margin-right: $form-check-input-width * .5 !important;
+  margin-bottom: 0 !important;
+  margin-left: -$spacer * 1.5 !important;
+}
+
 
 // Terms & conditions collapse box
 .woocommerce .woocommerce-terms-and-conditions,
@@ -36,21 +100,56 @@ WooCommerce Checkout
   border: none;
   box-shadow: none;
   border-radius: $border-radius;
-  margin-bottom: 1rem;
-  padding: 1rem;
+  margin-bottom: $spacer;
+  padding: $spacer;
 }
 
-// Adjust terms checkboxes
-.woocommerce form .form-row .input-checkbox {
-  margin: 0.25em 0 0 -1.5rem;
-  vertical-align: top;
+
+// Payment saved cards radios
+.woocommerce-SavedPaymentMethods.wc-saved-payment-methods {
+  padding-left: 0;
+
+  li {
+    @extend .form-check;
+    padding-left: 0;
+
+    input {
+      @extend .form-check-input;
+      width: $form-check-input-width !important; // Override inline-style
+      margin-top: ($line-height-base - $form-check-input-width) * .5 !important;
+      margin-right: $form-check-input-width * .5 !important;
+      margin-bottom: 0 !important;
+      margin-left: 0 !important;
+    }
+
+    label {
+      @extend .form-check-label;
+    }
+  }
 }
 
-// Place order button
-.woocommerce #payment #place_order,
-.woocommerce-page #payment #place_order {
-  width: 100%;
-  margin-top: 1rem;
-  margin-bottom: 0;
-  float: none;
+
+// Stripe
+// Stripe credit card input
+.wc-stripe-elements-field,
+.wc-stripe-iban-element-field {
+  padding: $input-padding-y $input-padding-x !important;
+  background-color: $input-bg !important;
+  border-radius: $border-radius;
+  border: var(--#{$prefix}border-width) var(--#{$prefix}border-style) var(--#{$prefix}border-color) !important;
+}
+
+
+// Save payment information check
+.form-row.woocommerce-SavedPaymentMethods-saveNew.woocommerce-validated {
+  @extend .form-check;
+
+  input {
+    @extend .form-check-input;
+    width: $form-check-input-width !important; // Override inline-style
+  }
+
+  label {
+    cursor: pointer;
+  }
 }

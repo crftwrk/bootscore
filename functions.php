@@ -9,9 +9,10 @@
  */
 
 
-// WooCommerce
-//require get_template_directory() . '/woocommerce/woocommerce-functions.php';
-// WooCommerce END
+// Enable WooCommerce scripts if plugin is installed
+if (class_exists('WooCommerce')) {
+  require get_template_directory() . '/woocommerce/wc-functions.php';
+}
 
 
 // Register Bootstrap 5 Nav Walker
@@ -103,10 +104,8 @@ function bootscore_content_width() {
   // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedVariableFound
   $GLOBALS['content_width'] = apply_filters('bootscore_content_width', 640);
 }
+
 add_action('after_setup_theme', 'bootscore_content_width', 0);
-
-
-
 
 
 /**
@@ -124,12 +123,23 @@ if (!function_exists('bootscore_widgets_init')) :
       'name'          => esc_html__('Top Nav', 'bootscore'),
       'id'            => 'top-nav',
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
-      'before_widget' => '<div class="ms-3">',
+      'before_widget' => '<div class="top-nav-widget ms-1 ms-md-2">',
       'after_widget'  => '</div>',
       'before_title'  => '<div class="widget-title d-none">',
       'after_title'   => '</div>'
     ));
-    // Top Nav End
+
+    // Top Nav 2
+    // Adds a widget next to the Top Nav position but moves to offcanvas on <lg breakpoint
+    register_sidebar(array(
+      'name'          => esc_html__('Top Nav 2', 'bootscore'),
+      'id'            => 'top-nav-2',
+      'description'   => esc_html__('Add widgets here.', 'bootscore'),
+      'before_widget' => '<div class="top-nav-widget-2 d-lg-flex align-items-lg-center mt-2 mt-lg-0 ms-lg-2">',
+      'after_widget'  => '</div>',
+      'before_title'  => '<div class="widget-title d-none">',
+      'after_title'   => '</div>'
+    ));
 
     // Top Nav Search
     register_sidebar(array(
@@ -141,19 +151,17 @@ if (!function_exists('bootscore_widgets_init')) :
       'before_title'  => '<div class="widget-title d-none">',
       'after_title'   => '</div>'
     ));
-    // Top Nav Search End
 
     // Sidebar
     register_sidebar(array(
       'name'          => esc_html__('Sidebar', 'bootscore'),
       'id'            => 'sidebar-1',
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
-      'before_widget' => '<section id="%1$s" class="widget %2$s card card-body mb-4 bg-light border-0">',
+      'before_widget' => '<section id="%1$s" class="widget %2$s card card-body mb-4">',
       'after_widget'  => '</section>',
-      'before_title'  => '<h2 class="widget-title card-title border-bottom py-2">',
+      'before_title'  => '<h2 class="widget-title card-header h5">',
       'after_title'   => '</h2>',
     ));
-    // Sidebar End
 
     // Top Footer
     register_sidebar(array(
@@ -165,7 +173,6 @@ if (!function_exists('bootscore_widgets_init')) :
       'before_title'  => '<h2 class="widget-title">',
       'after_title'   => '</h2>'
     ));
-    // Top Footer End
 
     // Footer 1
     register_sidebar(array(
@@ -174,10 +181,9 @@ if (!function_exists('bootscore_widgets_init')) :
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
       'before_widget' => '<div class="footer_widget mb-4">',
       'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title h4">',
+      'before_title'  => '<h2 class="widget-title h5">',
       'after_title'   => '</h2>'
     ));
-    // Footer 1 End
 
     // Footer 2
     register_sidebar(array(
@@ -186,10 +192,9 @@ if (!function_exists('bootscore_widgets_init')) :
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
       'before_widget' => '<div class="footer_widget mb-4">',
       'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title h4">',
+      'before_title'  => '<h2 class="widget-title h5">',
       'after_title'   => '</h2>'
     ));
-    // Footer 2 End
 
     // Footer 3
     register_sidebar(array(
@@ -198,10 +203,9 @@ if (!function_exists('bootscore_widgets_init')) :
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
       'before_widget' => '<div class="footer_widget mb-4">',
       'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title h4">',
+      'before_title'  => '<h2 class="widget-title h5">',
       'after_title'   => '</h2>'
     ));
-    // Footer 3 End
 
     // Footer 4
     register_sidebar(array(
@@ -210,10 +214,20 @@ if (!function_exists('bootscore_widgets_init')) :
       'description'   => esc_html__('Add widgets here.', 'bootscore'),
       'before_widget' => '<div class="footer_widget mb-4">',
       'after_widget'  => '</div>',
-      'before_title'  => '<h2 class="widget-title h4">',
+      'before_title'  => '<h2 class="widget-title h5">',
       'after_title'   => '</h2>'
     ));
-    // Footer 4 End
+
+    // Footer Info
+    register_sidebar(array(
+      'name'          => esc_html__('Footer Info', 'bootscore'),
+      'id'            => 'footer-info',
+      'description'   => esc_html__('Add widgets here.', 'bootscore'),
+      'before_widget' => '<div class="footer_widget">',
+      'after_widget'  => '</div>',
+      'before_title'  => '<div class="widget-title d-none">',
+      'after_title'   => '</div>'
+    ));
 
     // 404 Page
     register_sidebar(array(
@@ -225,11 +239,10 @@ if (!function_exists('bootscore_widgets_init')) :
       'before_title'  => '<h1 class="widget-title">',
       'after_title'   => '</h1>'
     ));
-    // 404 Page End
 
   }
-  add_action('widgets_init', 'bootscore_widgets_init');
 
+  add_action('widgets_init', 'bootscore_widgets_init');
 
 endif;
 // Widgets END
@@ -240,22 +253,21 @@ add_filter('widget_text', 'do_shortcode');
 // Shortcode in HTML-Widget End
 
 
-
 //Enqueue scripts and styles
 function bootscore_scripts() {
 
   // Get modification time. Enqueue files with modification date to prevent browser from loading cached scripts and styles when file content changes.
-  $modificated_bootscoreCss = (file_exists(get_template_directory() . '/css/main.css')) ? date('YmdHi', filemtime(get_template_directory() . '/css/main.css')) : 1;
-  $modificated_styleCss = date('YmdHi', filemtime(get_stylesheet_directory() . '/style.css'));
+  $modificated_bootscoreCss   = (file_exists(get_template_directory() . '/css/main.css')) ? date('YmdHi', filemtime(get_template_directory() . '/css/main.css')) : 1;
+  $modificated_styleCss       = date('YmdHi', filemtime(get_stylesheet_directory() . '/style.css'));
   $modificated_fontawesomeCss = date('YmdHi', filemtime(get_template_directory() . '/fontawesome/css/all.min.css'));
-  $modificated_bootstrapJs = date('YmdHi', filemtime(get_template_directory() . '/js/lib/bootstrap.bundle.min.js'));
-  $modificated_themeJs = date('YmdHi', filemtime(get_template_directory() . '/js/theme.js'));
+  $modificated_bootstrapJs    = date('YmdHi', filemtime(get_template_directory() . '/js/lib/bootstrap.bundle.min.js'));
+  $modificated_themeJs        = date('YmdHi', filemtime(get_template_directory() . '/js/theme.js'));
 
   // bootScore
   require_once 'inc/scss-compiler.php';
   bootscore_compile_scss();
   wp_enqueue_style('main', get_template_directory_uri() . '/css/main.css', array(), $modificated_bootscoreCss);
-  
+
   // Style CSS
   wp_enqueue_style('bootscore-style', get_stylesheet_uri(), array(), $modificated_styleCss);
 
@@ -284,6 +296,7 @@ function bootscore_scripts() {
     wp_enqueue_script('comment-reply');
   }
 }
+
 add_action('wp_enqueue_scripts', 'bootscore_scripts');
 //Enqueue scripts and styles END
 
@@ -297,6 +310,7 @@ function bootscore_fa_preload($tag) {
 
   return $tag;
 }
+
 // Preload Font Awesome END
 
 
@@ -327,6 +341,7 @@ if (!function_exists('wpsites_query')) :
       $query->set('posts_per_page', 24);
     }
   }
+
   add_action('pre_get_posts', 'wpsites_query');
 
 endif;
@@ -340,42 +355,47 @@ if (!function_exists('bootscore_pagination')) :
     $showitems = ($range * 2) + 1;
     global $paged;
     // default page to one if not provided
-    if(empty($paged)) $paged = 1;
+    if (empty($paged)) $paged = 1;
     if ($pages == '') {
       global $wp_query;
       $pages = $wp_query->max_num_pages;
 
-      if (!$pages)
+      if (!$pages) {
         $pages = 1;
+      }
     }
 
     if (1 != $pages) {
       echo '<nav aria-label="Page navigation" role="navigation">';
-      echo '<span class="sr-only">Page navigation</span>';
-      echo '<ul class="pagination justify-content-center ft-wpbs mb-4">';
+      echo '<span class="sr-only">' . esc_html__('Page navigation', 'bootscore') . '</span>';
+      echo '<ul class="pagination justify-content-center mb-4">';
 
-
-      if ($paged > 2 && $paged > $range + 1 && $showitems < $pages)
-        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(1) . '" aria-label="First Page">&laquo;</a></li>';
-
-      if ($paged > 1 && $showitems < $pages)
-        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($paged - 1) . '" aria-label="Previous Page">&lsaquo;</a></li>';
-
-      for ($i = 1; $i <= $pages; $i++) {
-        if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems))
-          echo ($paged == $i) ? '<li class="page-item active"><span class="page-link"><span class="sr-only">Current Page </span>' . $i . '</span></li>' : '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($i) . '"><span class="sr-only">Page </span>' . $i . '</a></li>';
+      if ($paged > 2 && $paged > $range + 1 && $showitems < $pages) {
+        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(1) . '" aria-label="' . esc_html__('First Page', 'bootscore') . '">&laquo;</a></li>';
       }
 
-      if ($paged < $pages && $showitems < $pages)
-        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(($paged === 0 ? 1 : $paged) + 1) . '" aria-label="Next Page">&rsaquo;</a></li>';
+      if ($paged > 1 && $showitems < $pages) {
+        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($paged - 1) . '" aria-label="' . esc_html__('Previous Page', 'bootscore') . '">&lsaquo;</a></li>';
+      }
 
-      if ($paged < $pages - 1 &&  $paged + $range - 1 < $pages && $showitems < $pages)
-        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($pages) . '" aria-label="Last Page">&raquo;</a></li>';
+      for ($i = 1; $i <= $pages; $i ++) {
+        if (1 != $pages && (!($i >= $paged + $range + 1 || $i <= $paged - $range - 1) || $pages <= $showitems)) {
+          echo ($paged == $i) ? '<li class="page-item active"><span class="page-link"><span class="sr-only">' . __('Current Page', 'bootscore') . ' </span>' . $i . '</span></li>' : '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($i) . '"><span class="sr-only">' . __('Page', 'bootscore') . ' </span>' . $i . '</a></li>';
+        }
+      }
+
+      if ($paged < $pages && $showitems < $pages) {
+        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link(($paged === 0 ? 1 : $paged) + 1) . '" aria-label="' . esc_html__('Next Page', 'bootscore') . '">&rsaquo;</a></li>';
+      }
+
+      if ($paged < $pages - 1 && $paged + $range - 1 < $pages && $showitems < $pages) {
+        echo '<li class="page-item"><a class="page-link" href="' . get_pagenum_link($pages) . '" aria-label="' . esc_html__('Last Page', 'bootscore') . '">&raquo;</a></li>';
+      }
 
       echo '</ul>';
       echo '</nav>';
       // Uncomment this if you want to show [Page 2 of 30]
-      // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">Page</span> '.$paged.' <span class="text-muted">of</span> '.$pages.' ]</div>';	 	
+      // echo '<div class="pagination-info mb-5 text-center">[ <span class="text-muted">' . __('Page', 'bootscore') . '</span> '.$paged.' <span class="text-muted">' . __('of', 'bootscore') . '</span> '.$pages.' ]</div>';
     }
   }
 
@@ -389,8 +409,10 @@ add_filter('previous_post_link', 'post_link_attributes');
 
 function post_link_attributes($output) {
   $code = 'class="page-link"';
+
   return str_replace('<a href=', '<a ' . $code . ' href=', $output);
 }
+
 // Pagination Buttons Single Posts END
 
 
@@ -402,21 +424,28 @@ add_post_type_support('page', 'excerpt');
 // Breadcrumb
 if (!function_exists('the_breadcrumb')) :
   function the_breadcrumb() {
+
     if (!is_home()) {
-      echo '<nav class="breadcrumb mb-4 mt-2 bg-light py-2 px-3 small rounded">';
-      echo '<a href="' . home_url('/') . '">' . ('<i class="fa-solid fa-house"></i>') . '</a><span class="divider">&nbsp;/&nbsp;</span>';
+      echo '<nav aria-label="breadcrumb" class="breadcrumb-scroller mb-4 mt-2 py-2 px-3 bg-body-tertiary rounded">';
+      echo '<ol class="breadcrumb mb-0">';
+      echo '<li class="breadcrumb-item"><a href="' . home_url() . '">' . '<i class="fa-solid fa-house"></i>' . '</a></li>';
+      // display parent category names with links
       if (is_category() || is_single()) {
-        the_category(' <span class="divider">&nbsp;/&nbsp;</span> ');
-        if (is_single()) {
-          echo ' <span class="divider">&nbsp;/&nbsp;</span> ';
-          the_title();
+        $cat_IDs = wp_get_post_categories(get_the_ID());
+        foreach ($cat_IDs as $cat_ID) {
+          $cat = get_category($cat_ID);
+          echo '<li class="breadcrumb-item"><a href="' . get_term_link($cat->term_id) . '">' . $cat->name . '</a></li>';
         }
-      } elseif (is_page()) {
-        echo the_title();
       }
+      // display current page name
+      if (is_page() || is_single()) {
+        echo '<li class="breadcrumb-item active" aria-current="page">' . get_the_title() . '</li>';
+      }
+      echo '</ol>';
       echo '</nav>';
     }
   }
+
   add_filter('breadcrumbs', 'breadcrumbs');
 endif;
 // Breadcrumb END
@@ -425,9 +454,11 @@ endif;
 // Comment Button
 if (!function_exists('bootscore_comment_button')) :
   function bootscore_comment_button($args) {
-    $args['class_submit'] = 'btn btn-outline-primary'; // since WP 4.1    
+    $args['class_submit'] = 'btn btn-outline-primary'; // since WP 4.1
+
     return $args;
   }
+
   add_filter('comment_form_defaults', 'bootscore_comment_button');
 endif;
 // Comment Button END
@@ -437,13 +468,14 @@ endif;
 if (!function_exists('bootscore_pw_form')) :
   function bootscore_pw_form() {
     $output = '
-        <form action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post" class="form-inline">' . "\n"
-      . '<input name="post_password" type="password" size="" class="form-control me-2 my-1" placeholder="' . __('Password', 'bootscore') . '"/>' . "\n"
-      . '<input type="submit" class="btn btn-outline-primary my-1" name="Submit" value="' . __('Submit', 'bootscore') . '" />' . "\n"
-      . '</p>' . "\n"
-      . '</form>' . "\n";
+        <form action="' . get_option('siteurl') . '/wp-login.php?action=postpass" method="post" class="input-group pw_form">' . "\n"
+              . '<input name="post_password" type="password" size="" class="form-control" placeholder="' . __('Password', 'bootscore') . '"/>' . "\n"
+              . '<input type="submit" class="btn btn-outline-primary input-group-text" name="Submit" value="' . __('Submit', 'bootscore') . '" />' . "\n"
+              . '</form>' . "\n";
+
     return $output;
   }
+
   add_filter("the_password_form", "bootscore_pw_form");
 endif;
 // Password protected form END
@@ -473,6 +505,7 @@ add_filter('pre_user_description', 'wp_filter_post_kses');
 function bs_after_primary() {
   do_action('bs_after_primary');
 }
+
 // Hook after #primary END
 
 
@@ -481,6 +514,7 @@ if (!function_exists('bs_comment_links_in_new_tab')) :
   function bs_comment_links_in_new_tab($text) {
     return str_replace('<a', '<a target="_blank" rel=”nofollow”', $text);
   }
+
   add_filter('comment_text', 'bs_comment_links_in_new_tab');
 endif;
 // Open links in comments in new tab END
@@ -492,3 +526,22 @@ add_filter('gutenberg_use_widgets_block_editor', '__return_false');
 // Disables the block editor from managing widgets.
 add_filter('use_widgets_block_editor', '__return_false');
 // Disable Gutenberg blocks in widgets (WordPress 5.8) END
+//
+
+
+/*
+ * Simple short code for inserting font awesome icons on Gutenberg leveli
+ * (instead of heaving to insert HTML code into a block on HTML editing mode)
+ */
+function bsfaCode($atts) {
+  $atts = (array) $atts;
+  $vstr = "";
+  foreach ($atts as $value) {
+    $vstr = $vstr . " $value";
+  }
+
+  return '<i class="' . $vstr . '"></i>';
+}
+
+;
+add_shortcode('bsfa', 'bsfaCode');

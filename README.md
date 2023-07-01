@@ -26,9 +26,9 @@ bootScore comes with seamless Bootstrap integration and full WooCommerce support
 
 Read [here](https://bootscore.me/documentation/installation/) how to install bootScore via Composer.
 
-## Child-theme(s)
+## Child-theme
 
-Edit theme in an upgrade-safe way using the provided child-theme(s). Build your site from scratch with [bootScore Child](https://bootscore.me/shop/products/child-themes/bootscore-child-theme/) or start a new WooCommerce shop with presetted [bootCommerce Child](https://bootscore.me/shop/products/child-themes/bootcommerce-5-child-theme/) (WooCommerce plugin is required).
+Edit theme in an upgrade-safe way using the provided [bootScore Child](https://github.com/bootscore/bootscore-child).
 
 ## Plugins
 
@@ -46,8 +46,8 @@ Check the [documentation](https://bootscore.me/category/documentation/). If you 
 ### Issues
 If you find a bug or have a feature idea, you're welcome to open an [issue](https://github.com/bootscore/bootscore/issues). Please check [closed issues](https://github.com/bootscore/bootscore/issues?q=is%3Aissue+is%3Aclosed) first to avoid duplicates.
 
-### Newsletter
-For important updates read the [blog](https://bootscore.me/category/blog/) and subscribe to the [newsletter](https://bootscore.me/category/blog/#newsletter). You will be informed if there is something new you should know.
+### Blog & Twitter
+For important updates read the [blog](https://bootscore.me/category/blog/) and follow us on [Twitter](https://twitter.com/_bootscore). You will be informed if there is something new you should know.
 
 ### Pull requests
 

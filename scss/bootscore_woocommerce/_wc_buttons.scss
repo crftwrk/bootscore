@@ -2,13 +2,31 @@
 WooCommerce Buttons
 --------------------------------------------------------------*/
 
+
 // Widget buttons
 .woocommerce {
+
   #respond input#submit,
   a.button,
   button.button,
-  input.button {
+  input.button,
+  a.button.alt:not(a.checkout-button) {
     @extend .btn;
     @extend .btn-outline-primary;
   }
+}
+
+// Table buttons
+.woocommerce .shop_table a.button,
+.woocommerce .shop_table a.woocommerce-MyAccount-downloads-file.button.alt {
+  @extend .btn-sm;
+}
+
+// Add to cart buttons
+.woocommerce .card a.button,
+.woocommerce div.product form.cart button.button,
+.woocommerce-cart .wc-proceed-to-checkout a.checkout-button,
+#place_order {
+  @extend .btn;
+  @extend .btn-primary;
 }

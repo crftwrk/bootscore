@@ -1,17 +1,19 @@
 === bootScore ===
 
-Contributors: Bastian Kreiter, Justin Kruit, Martin Holzer, Tim Groeneveld, Laurent Binder, Patrick, Gustavo Silva, TershiXia, electronicsandprogramming, charly, Alexandros Kourmoulakis, Sven Geiß, ucalegonte, Benhaim Ido
+Contributors: Bastian Kreiter, Justin Kruit, Martin Holzer, Tim Groeneveld, Laurent Binder, Patrick, Gustavo Silva, TershiXia, 
+electronicsandprogramming, charly, Alexandros Kourmoulakis, Sven Geiß, ucalegonte, Benhaim Ido, Sean Emerson, Androidacy, Tamás Dohány,
+David Vanderhaeghe, Karsten Reincke, Patrick Champoux, sweetappleuk
 
 Tags: featured-images, threaded-comments, translation-ready
 
 Requires at least: 4.5
-Tested up to: 6.0.2
+Tested up to: 6.2.2
 Requires PHP: 5.6
-Stable tag: 5.2.1.0
+Stable tag: 5.3.0
 License: MIT License
 License URI: https://github.com/bootscore/bootscore/blob/main/LICENSE
 
-bootScore, Bootstrap 5 WordPress Theme, Copyright 2019 - 2021 The bootScore Contributors.
+bootScore, Bootstrap 5 WordPress Theme, Copyright 2019 - 2023 The bootScore Contributors.
 
 
 === Plugin Name ===
@@ -56,6 +58,108 @@ bootScore includes support for WooCommerce and Infinite Scroll in Jetpack.
 
 
 == Changelog ==
+
+    = 5.3.0 - June 2 2023 =
+    
+        * [IMPROVEMENT] Checkout payment checks & radios #456
+        * [IMPROVEMENT] Make main col width dynamic #458
+        * [IMPROVEMENT] Replace PHP echo's with shorthand #459
+        * [IMPROVEMENT] Refactor header.php and enable Woo parts if WooCommerce is installed #461
+        * [IMPROVEMENT] Enqueue scripts if WooCommerce is installed #473
+        * [IMPROVEMENT] Password protected post form as input-group #476
+        * [IMPROVEMENT] Formatting the php files #495
+        * [BUGFIX] WooCommerce searchform language string #464
+        * [BUGFIX] bootscore_category() failing to output categories #465
+        * [BUGFIX] Duplicate class property in product-searchform.php 4c9daef
+        * [BUGFIX] JavaScript block HTML validation fail in ajax-add-to-cart.php c29635d
+        * [BUGFIX] Minor fixes 494
+        * [UPDATE] WooCommerce 7.8.0 templates #483
+        * [UPDATE] Translation template #469
+        * [UPDATE] Bootstrap 5.3.0 #487
+
+    = 5.2.3.4 - April 17 2023 =
+    
+        * [FEATURE] New bootscore_container_class() function #439
+        * [FEATURE] 2 more widget areas and improve existing ones #449
+        * [IMPROVEMENT] Comments section #446
+        * [BUGFIX] Add missing fallback for previous horizontal loop card images #450
+
+    = 5.2.3.3 - March 31 2023 =
+    
+        * [IMPROVEMENT] Make icons in alerts optional and use masks instead of FA font #403
+        * [IMPROVEMENT] Use WC strings instead of bootScore in mini cart #410
+        * [IMPROVEMENT] Refactor quantity input #405
+        * [IMPROVEMENT] Make pagination translation-ready #404
+        * [IMPROVEMENT] Horizontal loop cards #428
+        * [IMPROVEMENT] Add card-header to sidebar widget-cards #431
+        * [REMOVED] WooCommerce table templates #420
+        * [REMOVED] Temporary prefix webkit browsers checks, select and form-range defe598
+        * [FEATURE] Add a shortcode for inserting Fontawesome icons #413
+        * [BUGFIX] Searchform collapse behaviour #411
+        * [BUGFIX] Hide duplicate empty mini-cart message in cart page #434
+        * [UPDATE] Translation template #422
+        * [UPDATE] Font Awesome 6.4.0 #435
+
+    = 5.2.3.2 - February 17 2023 =
+    
+        * [IMPROVEMENT] Remove WooCommerce notice templates #372
+        * [IMPROVEMENT] Remove WooCommerce btn templates #386
+        * [IMPROVEMENT] Add more control over scss compiler #375
+        * [IMPROVEMENT] Offcanvas cart notices b2a822b, 3872704, eccb9af
+        * [UPDATE] screenshot.png 016bfc7
+        * [UPDATE] Fontawesome 6.3.0 #394
+        * [UPDATE] quantity-input.php (WooCommerce 7.4.0) 15f84aa
+        * [UPDATE] cart.php (WooCommerce 7.4.0) 6f3fa58
+        * [BUGFIX] Extend compound selectors #395
+        * [BUGFIX] Remove duplicated nav closing tag in the_breadcrumb #398
+
+    = 5.2.3.1 - January 16 2023 =
+    
+        * [UPDATE] quantity-input.php (WooCommerce 7.2) #331
+        * [UPDATE] cart-shipping.php (WooCommerce 7.3) #354
+        * [UPDATE] Password message for my-account-offcanvas.php #341
+        * [IMPROVEMENT] Refactored ajax cart #329
+        * [IMPROVEMENT] Clean-up single-*.php's and page-*.php's #332
+        * [IMPROVEMENT] Prevent self-closing offcanvas if dropdown has nested dropdowns (modified nav-walker with 3 or more levels depth) #350
+        * [IMPROVEMENT] Make use of admin bar height css var for offcanvas and modal #360
+        * [BUGFIX] Add show-password to all pages in WC user offcanvas #344
+
+    = 5.2.3.0 - December 16 2022 =
+
+        * [UPDATE] WC 7.2.0 templates
+        * [UPDATE] Bootstrap 5.2.3
+        * [IMPROVEMENT] Türkçe
+        * [NEW] Magyar, thanks to iamdtms
+
+    = 5.2.2.1 - November 03 2022 =
+    
+        PHP
+
+        * [UPDATE] WooCommerce 7.0.1 templates
+        
+        CSS
+        
+        * [IMPROVEMENT] Fix nonstandard prefix for ::selection
+
+    = 5.2.2.0 - October 17 2022 =
+    
+        PHP
+
+        * [IMPROVEMENT] scss compile, expanded for dev #279
+        * [IMPROVEMENT] Bootstrap 5.2.2 breadcrumb component #274
+        * [IMPROVEMENT] Feature package.json extra categories #276
+        
+        Updates
+
+        * [UPDATE] Bootstrap 5.2.2 #275
+
+    = 5.2.1.1 - September 15 2022 =
+    
+        PHP
+    
+        * [IMPROVEMENT] Same author meta function in single-*.php as in loop #251
+        * [UPDATE] form-login.php (WooCommerce 6.9.0) #255
+        * [BUGFIX] Readded empty IE alert function #258
 
     = 5.2.1.0 - September 08 2022 =
     
@@ -448,5 +552,4 @@ bootScore includes support for WooCommerce and Infinite Scroll in Jetpack.
     = 5.0.0.0 - January 29 2021 =
     
         * Initial release
-
 

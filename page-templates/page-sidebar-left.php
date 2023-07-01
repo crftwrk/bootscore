@@ -11,49 +11,39 @@
 get_header();
 ?>
 
-<div id="content" class="site-content container py-5 mt-5">
-  <div id="primary" class="content-area">
+  <div id="content" class="site-content <?= bootscore_container_class(); ?> py-5 mt-5">
+    <div id="primary" class="content-area">
 
-    <!-- Hook to add something nice -->
-    <?php bs_after_primary(); ?>
+      <!-- Hook to add something nice -->
+      <?php bs_after_primary(); ?>
 
-    <div class="row">
-      <!-- sidebar -->
-      <?php get_sidebar(); ?>
-      <div class="col-md-8 col-xxl-9 order-first order-md-last">
+      <div class="row">
+        <?php get_sidebar(); ?>
+        <div class="<?= bootscore_main_col_class(); ?> order-first order-md-last">
 
-        <main id="main" class="site-main">
+          <main id="main" class="site-main">
 
-          <header class="entry-header">
-            <?php the_post(); ?>
-            <?php the_category(', ') ?><?php the_terms($post->ID, 'isopost_categories', ' ', ' / '); ?>
-            <?php the_title('<h1>', '</h1>'); ?>
-            <?php bootscore_post_thumbnail(); ?>
-          </header>
+            <header class="entry-header">
+              <?php the_post(); ?>
+              <h1><?php the_title(); ?></h1>
+              <?php bootscore_post_thumbnail(); ?>
+            </header>
 
-          <div class="entry-content">
-            <!-- Content -->
-            <?php the_content(); ?>
-            <!-- .entry-content -->
-            <?php wp_link_pages(array(
-              'before' => '<div class="page-links">' . esc_html__('Pages:', 'bootscore'),
-              'after'  => '</div>',
-            ));
-            ?>
-          </div>
+            <div class="entry-content">
+              <?php the_content(); ?>
+            </div>
 
-          <footer class="entry-footer">
+            <footer class="entry-footer">
+              <?php comments_template(); ?>
+            </footer>
 
-          </footer>
+          </main>
 
-          <?php comments_template(); ?>
+        </div>
+      </div>
 
-        </main><!-- #main -->
+    </div>
+  </div>
 
-      </div><!-- col -->
-    </div><!-- row -->
-
-  </div><!-- #primary -->
-</div><!-- #contenty -->
 <?php
 get_footer();

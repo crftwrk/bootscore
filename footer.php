@@ -9,21 +9,19 @@
  *
  * @package Bootscore
  *
- * @version 5.2.0.0
+ * @version 5.3.0
  */
 
 ?>
 
 <footer>
 
-  <div class="bootscore-footer bg-light pt-5 pb-3">
-    <div class="container">
+  <div class="bootscore-footer bg-body-tertiary pt-5 pb-3">
+    <div class="<?= bootscore_container_class(); ?>">
 
       <!-- Top Footer Widget -->
       <?php if (is_active_sidebar('top-footer')) : ?>
-        <div>
-          <?php dynamic_sidebar('top footer'); ?>
-        </div>
+        <?php dynamic_sidebar('top footer'); ?>
       <?php endif; ?>
 
       <div class="row">
@@ -31,39 +29,30 @@
         <!-- Footer 1 Widget -->
         <div class="col-md-6 col-lg-3">
           <?php if (is_active_sidebar('footer-1')) : ?>
-            <div>
-              <?php dynamic_sidebar('footer-1'); ?>
-            </div>
+            <?php dynamic_sidebar('footer-1'); ?>
           <?php endif; ?>
         </div>
 
         <!-- Footer 2 Widget -->
         <div class="col-md-6 col-lg-3">
           <?php if (is_active_sidebar('footer-2')) : ?>
-            <div>
-              <?php dynamic_sidebar('footer-2'); ?>
-            </div>
+            <?php dynamic_sidebar('footer-2'); ?>
           <?php endif; ?>
         </div>
 
         <!-- Footer 3 Widget -->
         <div class="col-md-6 col-lg-3">
           <?php if (is_active_sidebar('footer-3')) : ?>
-            <div>
-              <?php dynamic_sidebar('footer-3'); ?>
-            </div>
+            <?php dynamic_sidebar('footer-3'); ?>
           <?php endif; ?>
         </div>
 
         <!-- Footer 4 Widget -->
         <div class="col-md-6 col-lg-3">
           <?php if (is_active_sidebar('footer-4')) : ?>
-            <div>
-              <?php dynamic_sidebar('footer-4'); ?>
-            </div>
+            <?php dynamic_sidebar('footer-4'); ?>
           <?php endif; ?>
         </div>
-        <!-- Footer Widgets End -->
 
       </div>
 
@@ -71,22 +60,24 @@
       <?php
       wp_nav_menu(array(
         'theme_location' => 'footer-menu',
-        'container' => false,
-        'menu_class' => '',
-        'fallback_cb' => '__return_false',
-        'items_wrap' => '<ul id="footer-menu" class="nav %2$s">%3$s</ul>',
-        'depth' => 1,
-        'walker' => new bootstrap_5_wp_nav_menu_walker()
+        'container'      => false,
+        'menu_class'     => '',
+        'fallback_cb'    => '__return_false',
+        'items_wrap'     => '<ul id="footer-menu" class="nav %2$s">%3$s</ul>',
+        'depth'          => 1,
+        'walker'         => new bootstrap_5_wp_nav_menu_walker()
       ));
       ?>
-      <!-- Bootstrap 5 Nav Walker Footer Menu End -->
 
     </div>
   </div>
 
-  <div class="bootscore-info bg-light text-muted border-top py-2 text-center">
-    <div class="container">
-      <small>&copy;&nbsp;<?php echo Date('Y'); ?> - <?php bloginfo('name'); ?></small>
+  <div class="bootscore-info bg-body-tertiary text-body-tertiary border-top py-2 text-center">
+    <div class="<?= bootscore_container_class(); ?>">
+      <?php if (is_active_sidebar('footer-info')) : ?>
+        <?php dynamic_sidebar('footer-info'); ?>
+      <?php endif; ?>
+      <small class="bootscore-copyright"><span class="cr-symbol">&copy;</span>&nbsp;<?= date('Y'); ?> <?php bloginfo('name'); ?></small>
     </div>
   </div>
 

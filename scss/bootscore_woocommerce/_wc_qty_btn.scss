@@ -2,6 +2,14 @@
 WooCommerce Quantity Input
 --------------------------------------------------------------*/
 
+.quantity {
+  @extend .input-group;
+}
+
+.qty {
+  @extend .form-control;
+}
+
 .woocommerce .quantity input {
   // Hide browser arrows in quantity input
   &::-webkit-outer-spin-button,
@@ -21,8 +29,14 @@ WooCommerce Quantity Input
 .quantity {
   width: 140px;
 
-  // Hide quantity if product can only be purchased once
-  &.hidden {
-    display: none;
+  // Disable input if product is 1 in stock or limit purchases to 1 item per order
+  // https://github.com/woocommerce/woocommerce/pull/35767
+  [max="1"] {
+    @extend :disabled;
   }
+}
+
+// Hide quantity input if product is sold individually
+.sold-individually .quantity {
+  display: none;
 }

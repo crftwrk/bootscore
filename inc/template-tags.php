@@ -14,16 +14,16 @@ if (!function_exists('bootscore_category_badge')) :
   function bootscore_category_badge() {
     // Hide category and tag text for pages.
     if ('post' === get_post_type()) {
-      echo '<div class="category-badge mb-2">';
+      echo '<p class="category-badge">';
       $thelist = '';
-      $i = 0;
+      $i       = 0;
       foreach (get_the_category() as $category) {
         if (0 < $i) $thelist .= ' ';
-        $thelist .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="badge text-bg-secondary text-decoration-none">' . $category->name . '</a>';
-        $i++;
+        $thelist .= '<a href="' . esc_url(get_category_link($category->term_id)) . '" class="badge bg-primary-subtle text-primary-emphasis text-decoration-none">' . $category->name . '</a>';
+        $i ++;
       }
       echo $thelist;
-      echo '</div>';
+      echo '</p>';
     }
   }
 endif;
@@ -39,7 +39,7 @@ if (!function_exists('bootscore_category')) :
       $categories_list = get_the_category_list(esc_html__(', ', 'bootscore'));
       if ($categories_list) {
         /* translators: 1: list of categories. */
-        printf('<span class="cat-links"></span>', $categories_list); // WPCS: XSS OK.	
+        printf('<span class="cat-links">%s</span>', $categories_list); // WPCS: XSS OK.	
       }
     }
   }
@@ -67,7 +67,7 @@ if (!function_exists('bootscore_date')) :
     );
 
     $posted_on = sprintf(
-      /* translators: %s: post date. */
+    /* translators: %s: post date. */
       '%s',
       '<span rel="bookmark">' . $time_string . '</span>'
     );
@@ -107,7 +107,7 @@ if (!function_exists('bootscore_comments')) :
       comments_popup_link(
         sprintf(
           wp_kses(
-            /* translators: %s: post title */
+          /* translators: %s: post title */
             __('Leave a Comment', 'bootscore'),
             array(
               'span' => array(
@@ -135,7 +135,7 @@ if (!function_exists('bootscore_edit')) :
     edit_post_link(
       sprintf(
         wp_kses(
-          /* translators: %s: Name of current post. Only visible to screen readers */
+        /* translators: %s: Name of current post. Only visible to screen readers */
           __('Edit', 'bootscore'),
           array(
             'span' => array(
@@ -188,14 +188,18 @@ if (!function_exists('bootscore_tags')) :
       $tags_list = get_the_tag_list('', ' ');
       if ($tags_list) {
         /* translators: 1: list of tags. */
-        printf('<div class="tags-links mt-2">' . esc_html__('Tagged %1$s', 'bootscore') . '</div>', $tags_list); // WPCS: XSS OK.
+        echo '<div class="tags-links">';
+        echo '<p class="tags-heading mb-2">' . esc_html__('Tagged', 'bootscore') . '</p>';
+        echo get_the_tag_list();
+        echo '</div>';
       }
     }
   }
+
   add_filter("term_links-post_tag", 'add_tag_class');
 
   function add_tag_class($links) {
-    return str_replace('<a href="', '<a class="badge text-bg-secondary text-decoration-none" href="', $links);
+    return str_replace('<a href="', '<a class="badge bg-primary-subtle text-primary-emphasis text-decoration-none me-1" href="', $links);
   }
 endif;
 // Tags End
@@ -215,7 +219,7 @@ if (!function_exists('bootscore_post_thumbnail')) :
     }
 
     if (is_singular()) :
-?>
+      ?>
 
       <div class="post-thumbnail">
         <?php the_post_thumbnail('full', array('class' => 'rounded mb-3')); ?>
@@ -233,8 +237,25 @@ if (!function_exists('bootscore_post_thumbnail')) :
         ?>
       </a>
 
-<?php
+    <?php
     endif; // End is_singular().
   }
 endif;
 // Featured Image End
+
+
+// Remove in v6
+// Internet Explorer Warning Alert
+if (!function_exists('bootscore_ie_alert')) :
+  /**
+   * Deprecated - functionality is removed already - Code will be removed in a future release.
+   * Replaced with a js solution to prevent page caching
+   *
+   * (Displays an alert if page is browsed by Internet Explorer)
+   *
+   * function stays to not break child themes with the function bootscore_ie_alert() immediately
+   */
+  function bootscore_ie_alert() {
+  }
+endif;
+// Internet Explorer Warning Alert End

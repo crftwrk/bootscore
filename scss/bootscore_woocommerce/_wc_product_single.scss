@@ -9,7 +9,7 @@ WooCommerce Single Product
 
     div.quantity {
       float: none;
-      margin-right: 1rem;
+      margin-right: $spacer;
     }
   }
 
@@ -33,8 +33,9 @@ WooCommerce Single Product
     div.quantity {
       margin-right: auto;
       width: 100%;
-      margin-bottom: 0.5rem;
+      margin-bottom: $spacer * .5;
     }
   }
 }
+
 // Quantity and add to cart button END
